@@ -193,7 +193,7 @@ class ZooKeeperServer(object):
         """ Get ZooKeeper server stats as a map """
         # Reset stats every hour
         td = datetime.utcnow() - self._last_reset
-        if td.seconds // 60 >= STATS_RESET_INTERVAL_MINUTES:
+        if td.total_seconds() // 60 >= STATS_RESET_INTERVAL_MINUTES:
             self._reset_stats()
 
         data = self._send_cmd('mntr')
